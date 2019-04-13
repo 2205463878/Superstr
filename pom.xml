@@ -59,7 +59,7 @@
 			<artifactId>spring-boot-maven-plugin</artifactId>
 			<!-- maven install 没有指定<mainClass>或者继承了spring-boot-starter-parent并且<start-class>属性未配置时，会自动寻找签名是public static void main(String[] args)的方法... 所以插件懵逼了，两个妹子和谁在一起呢... -->
 			<configuration>
-        		<mainClass>com.oo.HappyCodeApplication</mainClass>
+        		<mainClass>work.superstr.SuperstrApplication</mainClass>
 		    </configuration>
 		    <!-- 所述spring-boot-starter-parentPOM包括<executions>配置以结合repackage目标。如果您不使用父POM，则需要自己声明此配置 -->
   			<executions>
