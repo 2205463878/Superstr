@@ -6,7 +6,7 @@ import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactor
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan("work")//注释扫描，默认扫描使用@ComponentScan所的类所在包下
+/*@ComponentScan("work")//注释扫描，默认扫描使用@ComponentScan所的类所在包下
 @EnableAutoConfiguration
 public class SuperstrApplication {
 	public static void main(String[] args) {
@@ -21,4 +21,4 @@ public class SuperstrApplication {
        return tomcatServletWebServerFactory;
     }
 
-}
+}*/
