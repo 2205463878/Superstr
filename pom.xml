@@ -2,21 +2,76 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>work.superstr</groupId>
   <artifactId>Superstr</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
+   <version>0.0.1-SNAPSHOT</version><!-- SNAPSHOT:快照版本，仍处开发中的版本（不稳定），RELEASE:正式版本，对外发布的稳定版本 -->
+  <packaging>war</packaging><!-- jar:普通项目，pom:父级项目，war:服务项目 -->
+  <!-- 继承spring-boot-starter-parent --> 
+  <parent>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-parent</artifactId>
+	<version>2.0.0.RELEASE</version>
+  </parent>
+  <!-- 添加Maven依赖 -->
   <dependencies>
-  <dependency>
-	    <groupId>com.google.guava</groupId>
-	    <artifactId>guava</artifactId>
-	    <version>27.1-jre</version>
+    <dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-web</artifactId>
+	    <!-- 移除嵌入式tomcat插件 -->
+	    <!--
+	    <exclusions>
+	        <exclusion>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-starter-tomcat</artifactId>
+	        </exclusion>
+	    </exclusions>
+	    -->
 	</dependency>
-	</dependencies>
-   <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <!-- SpringBoot内嵌tomcat(spring-boot-starter-web已经默认添加了这个jar包的依赖) -->
+    <!-- 
+    <dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-tomcat</artifactId>
+	</dependency>
+	-->
+	<dependency> 
+		<groupId>org.springframework.boot</groupId> 
+		<artifactId>spring-boot-starter-web</artifactId> 
+	</dependency>
+	<!--SpringBoot工具,改善开发时体验的模块：classpath里对文件任何操作都会触发应用程序重新启动 -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+        <optional>true</optional>
+    </dependency>
+      <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+ 
+	<dependency>
+         <groupId>com.alibaba</groupId>
+         <artifactId>fastjson</artifactId>
+         <version>1.2.15</version>
+    </dependency>
+  </dependencies>
+  <build>
+  	<plugins>
+  		<!-- SpringBoot Maven插件，可以打包成可执行的jar或war -->
+  		<plugin>
+  			<groupId>org.springframework.boot</groupId> 
+			<artifactId>spring-boot-maven-plugin</artifactId>
+			<!-- maven install 没有指定<mainClass>或者继承了spring-boot-starter-parent并且<start-class>属性未配置时，会自动寻找签名是public static void main(String[] args)的方法... 所以插件懵逼了，两个妹子和谁在一起呢... -->
+			<configuration>
+        		<mainClass>com.oo.HappyCodeApplication</mainClass>
+		    </configuration>
+		    <!-- 所述spring-boot-starter-parentPOM包括<executions>配置以结合repackage目标。如果您不使用父POM，则需要自己声明此配置 -->
+  			<executions>
+		        <execution>
+		            <goals>
+		                <goal>repackage</goal>
+		            </goals>
+		        </execution>
+		    </executions>
+  		</plugin>
+  	</plugins>
+  </build>
 </project>
