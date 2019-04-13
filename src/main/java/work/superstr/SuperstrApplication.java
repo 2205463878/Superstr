@@ -14,11 +14,6 @@ public class SuperstrApplication {
 		SpringApplication.run(SuperstrApplication.class, args);
 	}
 	
-	@Bean
-    public TomcatServletWebServerFactory servletContainer(){
-       TomcatServletWebServerFactory tomcatServletWebServerFactory = new TomcatServletWebServerFactory();
-       tomcatServletWebServerFactory.setPort(8090);//修改默认启动端口
-       return tomcatServletWebServerFactory;
-    }
+	
 
 }
